@@ -31,6 +31,7 @@
 #define SRC_RESP_PARSER_H_
 
 #include <stddef.h>
+#include "../deps/fast_float_c/fast_float_c.h"
 
 typedef struct ReplyParser ReplyParser;
 

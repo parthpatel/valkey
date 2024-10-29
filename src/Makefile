@@ -31,7 +31,7 @@ endif
 ifneq ($(OPTIMIZATION),-O0)
 	OPTIMIZATION+=-fno-omit-frame-pointer
 endif
-DEPENDENCY_TARGETS=hiredis linenoise lua hdr_histogram fpconv
+DEPENDENCY_TARGETS=hiredis linenoise lua hdr_histogram fpconv fast_float fast_float_c
 NODEPS:=clean distclean
 
 # Default settings
@@ -348,6 +348,12 @@ ifeq ($(BUILD_RDMA),no)
 else
     $(error "RDMA is only supported as module (BUILD_RDMA=module), or disabled (BUILD_RDMA=no)")
 endif
+endif
+
+BUILD_FAST_FLOAT:=yes
+ifeq ($(BUILD_FAST_FLOAT),yes)
+	git submodule update --init
+	FINAL_LIBS += ../deps/fast_float_c/fast_float_c.o -lc++
 endif
 
 ifndef V
