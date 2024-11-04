@@ -352,7 +352,13 @@ endif
 
 BUILD_FAST_FLOAT:=yes
 ifeq ($(BUILD_FAST_FLOAT),yes)
-	FINAL_LIBS += ../deps/fast_float_c/fast_float_c.o -lc++
+	FINAL_LIBS += ../deps/fast_float_c/fast_float_c.o
+	# Mac uses Clang and the standard c++ library is named libc++. For others, it is named libstdc++. 
+	ifeq (clang,$(CLANG))
+  		FINAL_LIBS+= -lc++
+	else
+		FINAL_LIBS+= -lstdc++
+	endif
 endif
 
 ifndef V
