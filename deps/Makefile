@@ -122,5 +122,5 @@ jemalloc: .make-prerequisites
 fast_float: .make-prerequisites
 	@printf '%b %b\n' $(MAKECOLOR)MAKE$(ENDCOLOR) $(BINCOLOR)$@$(ENDCOLOR)
 	git submodule update --init
-	cd fast_float && cmake --build . 
+	cd fast_float && cmake . && cmake --build . 
 	cd fast_float_c && $(MAKE) all    
