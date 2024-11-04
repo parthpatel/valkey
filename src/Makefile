@@ -352,7 +352,6 @@ endif
 
 BUILD_FAST_FLOAT:=yes
 ifeq ($(BUILD_FAST_FLOAT),yes)
-	git submodule update --init
 	FINAL_LIBS += ../deps/fast_float_c/fast_float_c.o -lc++
 endif
 
