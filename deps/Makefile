@@ -42,8 +42,8 @@ distclean:
 	-(cd jemalloc && [ -f Makefile ] && $(MAKE) distclean) > /dev/null || true
 	-(cd hdr_histogram && $(MAKE) clean) > /dev/null || true
 	-(cd fpconv && $(MAKE) clean) > /dev/null || true
+	# fast_float is a header-only library, so we only need to compile the bridge to C. 
 	-(cd fast_float_c && $(MAKE) clean) > /dev/null || true
-	-(cd fast_float && $(MAKE) clean) > /dev/null || true
 	-(rm -f .make-*)
 
 .PHONY: distclean
@@ -122,5 +122,5 @@ jemalloc: .make-prerequisites
 fast_float: .make-prerequisites
 	@printf '%b %b\n' $(MAKECOLOR)MAKE$(ENDCOLOR) $(BINCOLOR)$@$(ENDCOLOR)
 	git submodule update --init
-	cd fast_float && cmake . && cmake --build . 
+	# fast_float is a header-only library, so we only need to compile the bridge to C. 
 	cd fast_float_c && $(MAKE) all    
